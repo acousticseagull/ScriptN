@@ -85,37 +85,37 @@ export const toolbox = (target) => {
     button.character,
     button.dialog,
     button.delete,
-    tag('div', { class: 'title' }, 'CREATE SCENE'),
-    tag(
-      'button',
-      {
-        onclick: (e) => {
-          const tag = createScene();
-          target.insertAdjacentElement('beforebegin', tag);
-          toolbox(tag);
-          setCursor(tag.querySelector('.heading'));
-        },
-        onmousedown: (e) => {
-          e.preventDefault();
-        },
-      },
-      `ABOVE`
-    ),
-    tag(
-      'button',
-      {
-        onclick: (e) => {
-          const tag = createScene();
-          target.insertAdjacentElement('afterend', tag);
-          toolbox(tag);
-          setCursor(tag.querySelector('.heading'));
-        },
-        onmousedown: (e) => {
-          e.preventDefault();
-        },
-      },
-      `BELOW`
-    ),
+    // tag('div', { class: 'title' }, 'CREATE SCENE'),
+    // tag(
+    //   'button',
+    //   {
+    //     onclick: (e) => {
+    //       const tag = createScene();
+    //       target.insertAdjacentElement('beforebegin', tag);
+    //       toolbox(tag);
+    //       setCursor(tag.querySelector('.heading'));
+    //     },
+    //     onmousedown: (e) => {
+    //       e.preventDefault();
+    //     },
+    //   },
+    //   `ABOVE`
+    // ),
+    // tag(
+    //   'button',
+    //   {
+    //     onclick: (e) => {
+    //       const tag = createScene();
+    //       target.insertAdjacentElement('afterend', tag);
+    //       toolbox(tag);
+    //       setCursor(tag.querySelector('.heading'));
+    //     },
+    //     onmousedown: (e) => {
+    //       e.preventDefault();
+    //     },
+    //   },
+    //   `BELOW`
+    // ),
   ];
 
   const node = tag(
