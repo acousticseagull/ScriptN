@@ -8,7 +8,9 @@ export const toolbox = (target) => {
   button.action = tag(
     'button',
     {
-      disabled: target.classList.contains('action'),
+      disabled:
+        target.classList.contains('action') ||
+        target.classList.contains('heading'),
       onclick: (e) => {
         target.className = 'action';
         e.target.parentElement.style.top = `${target.offsetTop}px`;
@@ -28,7 +30,9 @@ export const toolbox = (target) => {
   button.character = tag(
     'button',
     {
-      disabled: target.classList.contains('character'),
+      disabled:
+        target.classList.contains('character') ||
+        target.classList.contains('heading'),
       onclick: (e) => {
         target.className = 'character';
         e.target.parentElement.style.top = `${target.offsetTop}px`;
@@ -48,7 +52,9 @@ export const toolbox = (target) => {
   button.dialog = tag(
     'button',
     {
-      disabled: target.classList.contains('dialog'),
+      disabled:
+        target.classList.contains('dialog') ||
+        target.classList.contains('heading'),
       onclick: (e) => {
         target.className = 'dialog';
         e.target.parentElement.style.top = `${target.offsetTop}px`;
@@ -69,8 +75,12 @@ export const toolbox = (target) => {
     'button',
     {
       class: 'delete',
+      disabled:
+        target.classList.contains('heading') &&
+        document.querySelectorAll('.scene').length === 1,
       onclick: (e) => {
-        remove(target);
+        if (target.classList.contains('heading')) remove(target.parentElement);
+        else remove(target);
       },
       onmousedown: (e) => {
         e.preventDefault();
@@ -85,37 +95,37 @@ export const toolbox = (target) => {
     button.character,
     button.dialog,
     button.delete,
-    // tag('div', { class: 'title' }, 'CREATE SCENE'),
-    // tag(
-    //   'button',
-    //   {
-    //     onclick: (e) => {
-    //       const tag = createScene();
-    //       target.insertAdjacentElement('beforebegin', tag);
-    //       toolbox(tag);
-    //       setCursor(tag.querySelector('.heading'));
-    //     },
-    //     onmousedown: (e) => {
-    //       e.preventDefault();
-    //     },
-    //   },
-    //   `ABOVE`
-    // ),
-    // tag(
-    //   'button',
-    //   {
-    //     onclick: (e) => {
-    //       const tag = createScene();
-    //       target.insertAdjacentElement('afterend', tag);
-    //       toolbox(tag);
-    //       setCursor(tag.querySelector('.heading'));
-    //     },
-    //     onmousedown: (e) => {
-    //       e.preventDefault();
-    //     },
-    //   },
-    //   `BELOW`
-    // ),
+    tag('div', { class: 'title' }, 'CREATE SCENE'),
+    tag(
+      'button',
+      {
+        onclick: (e) => {
+          const tag = createScene();
+          target.parentElement.insertAdjacentElement('beforebegin', tag);
+          toolbox(tag);
+          setCursor(tag.querySelector('.heading'));
+        },
+        onmousedown: (e) => {
+          e.preventDefault();
+        },
+      },
+      `ABOVE`
+    ),
+    tag(
+      'button',
+      {
+        onclick: (e) => {
+          const tag = createScene();
+          target.parentElement.insertAdjacentElement('afterend', tag);
+          toolbox(tag);
+          setCursor(tag.querySelector('.heading'));
+        },
+        onmousedown: (e) => {
+          e.preventDefault();
+        },
+      },
+      `BELOW`
+    ),
   ];
 
   const node = tag(
@@ -130,12 +140,7 @@ export const toolbox = (target) => {
     menu
   );
 
+  document.querySelector('.toolbox')?.remove();
+
   target.parentElement.append(node);
-
-  const removeNode = (e) => {
-    node.remove();
-    e.target.removeEventListener('blur', removeNode);
-  };
-
-  target.addEventListener('blur', removeNode);
 };

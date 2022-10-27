@@ -48,7 +48,7 @@ body {
   content: '(ENTER KEY ADD ACTION BLOCK)';
 }
 .heading:last-child {
-  margin-bottom: 0.5em;
+  /* margin-bottom: 0.5em; */
 }
 
 .action {
@@ -116,6 +116,9 @@ body {
   color: gray;
   margin-bottom: 0.25em;
 }
+.toolbox .title:not(:first-child) {
+  margin-top: 0.5em;
+}
 .toolbox > button {
   width: 100%;
   border: 1px solid deepskyblue;
@@ -134,7 +137,7 @@ body {
   border: 1px solid orangered;
   background-color: white;
   color: orangered;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 .toolbox > button.delete:hover {
   background-color: orangered;
