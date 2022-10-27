@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1em;
+  font-family: monospace;
+  font-weight: 400;
+}
+
+.scene::after,
+.heading::after,
+.action::after,
+.dialog::after,
+.character::after {
+  position: absolute;
+  margin-top: -2px;
+  display: block;
+  font-size: 9px;
+  color: gray;
+  z-index: -1;
+}
+.scene:empty::after,
+.heading:empty::after,
+.action:empty::after,
+.dialog:empty::after,
+.character:empty::after {
+  margin-top: 3px;
+}
+
+.scene {
+  position: relative;
+  margin: 1em auto;
+  width: 500px;
+  padding: 0.5em 0;
+}
+
+.heading {
+  text-transform: uppercase;
+  margin: 0.5em 1em 1em;
+  outline: none;
+}
+.heading:empty::after {
+  content: 'SCENE HEADING BLOCK';
+}
+.heading:not(:empty):focus::after {
+  content: '(ENTER KEY ADD ACTION BLOCK)';
+}
+.heading:last-child {
+  margin-bottom: 0.5em;
+}
+
+.action {
+  margin: 0.5em 1em 1em;
+}
+.action:focus {
+  outline: none;
+}
+.action:not(:empty):focus::after {
+  content: '(ENTER KEY ADD ACTION BLOCK)';
+}
+.action:empty::after {
+  content: 'ACTION BLOCK (ENTER KEY CHANGE TO CHARACTER BLOCK)';
+}
+.action:last-child {
+  margin-bottom: 0.5em;
+}
+
+.character {
+  text-transform: uppercase;
+  margin: 1em 0 0.5em 14em;
+  outline: none;
+}
+.character:last-child {
+  margin-bottom: 0.5em;
+}
+.character:not(:empty):focus::after {
+  content: '(ENTER KEY ADD DIALOG BLOCK)';
+}
+.character:empty::after {
+  content: 'CHARACTER BLOCK (ENTER KEY CHANGE TO ACTION BLOCK)';
+}
+.character:last-child {
+  margin-bottom: 0.5em;
+}
+
+.dialog {
+  margin: 0 10em 1em 8em;
+  outline: none;
+}
+.dialog:not(:empty):focus::after {
+  content: '(ENTER KEY ADD CHARACTER BLOCK)';
+}
+.dialog:empty::after {
+  content: 'DIALOG BLOCK (ENTER KEY CHANGE TO ACTION BLOCK)';
+}
+.dialog:last-child {
+  margin-bottom: 0.5em;
+}
+
+.toolbox {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  border: 1px solid lightgray;
+  background-color: white;
+  padding: 0.25em;
+  box-shadow: 0 3px 3px 0 lightgray;
+  border-radius: 5px;
+  z-index: 1;
+}
+.toolbox .title {
+  font-size: 10px;
+  color: gray;
+  margin-bottom: 0.25em;
+}
+.toolbox > button {
+  width: 100%;
+  border: 1px solid deepskyblue;
+  background-color: white;
+  margin-bottom: 0.25em;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: deepskyblue;
+}
+.toolbox > button:hover {
+  background-color: deepskyblue;
+  color: white;
+}
+.toolbox > button.delete {
+  border: 1px solid orangered;
+  background-color: white;
+  color: orangered;
+  margin-top: 1em;
+}
+.toolbox > button.delete:hover {
+  background-color: orangered;
+  color: white;
+}
+.toolbox > button:active {
+  background-color: white;
+}
+.toolbox > button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.toolbox > button:last-child {
+  margin-bottom: 0;
+}
