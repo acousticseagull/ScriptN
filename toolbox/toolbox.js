@@ -142,5 +142,12 @@ export const toolbox = (target) => {
 
   document.querySelector('.toolbox')?.remove();
 
+  const removeNode = (e) => {
+    node.remove();
+    e.target.removeEventListener('blur', removeNode);
+  };
+
+  target.addEventListener('blur', removeNode);
+
   target.parentElement.append(node);
 };
