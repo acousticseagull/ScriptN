@@ -2,7 +2,7 @@ import tag from '../tag';
 import { createScene } from '../create';
 import { remove, setCursor } from '../utilities';
 
-export const toolbox = (target) => {
+export const toolbox = (target, collapsed = true) => {
   const button = {};
 
   button.action = tag(
@@ -137,7 +137,34 @@ export const toolbox = (target) => {
         left: ${target.offsetLeft - 110}px;
       `,
     },
-    menu
+    collapsed
+      ? tag(
+          'button',
+          {
+            class: 'collapse',
+            onclick: (e) => {
+              toolbox(target, false);
+            },
+            onmousedown: (e) => {
+              e.preventDefault();
+            },
+          },
+          '+'
+        )
+      : tag(
+          'button',
+          {
+            class: 'collapse',
+            onclick: (e) => {
+              toolbox(target, true);
+            },
+            onmousedown: (e) => {
+              e.preventDefault();
+            },
+          },
+          '-'
+        ),
+    !collapsed && menu
   );
 
   document.querySelector('.toolbox')?.remove();

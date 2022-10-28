@@ -47,9 +47,6 @@ body {
 .heading:not(:empty):focus::after {
   content: '(ENTER KEY ADD ACTION BLOCK)';
 }
-.heading:last-child {
-  /* margin-bottom: 0.5em; */
-}
 
 .action {
   margin: 0.5em 1em 1em;
@@ -142,6 +139,10 @@ body {
 .toolbox > button.delete:hover {
   background-color: orangered;
   color: white;
+}
+.toolbox > button.collapse {
+  width: 20px;
+  margin-left: auto;
 }
 .toolbox > button:active {
   background-color: white;
