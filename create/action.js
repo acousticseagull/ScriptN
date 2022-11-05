@@ -2,6 +2,7 @@ import tag from '../tag';
 import { setCursor, remove } from '../utilities/';
 import { toolbox } from '../toolbox';
 import { createCharacter } from './character';
+import { createScene } from './scene';
 
 function onKeydown(e) {
   if (e.key === 'Enter') {

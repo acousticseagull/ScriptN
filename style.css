@@ -66,7 +66,7 @@ body {
 
 .character {
   text-transform: uppercase;
-  margin: 1em 0 0.5em 14em;
+  margin: 1.25em 0 0.5em 14em;
   outline: none;
 }
 .character:last-child {
@@ -104,9 +104,18 @@ body {
   border: 1px solid lightgray;
   background-color: white;
   padding: 0.25em;
+  margin-top: -4px;
+  margin-left: 5px;
   box-shadow: 0 3px 3px 0 lightgray;
   border-radius: 5px;
   z-index: 1;
+}
+.toolbox.collapsed {
+  background-color: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
 }
 .toolbox .title {
   font-size: 10px;

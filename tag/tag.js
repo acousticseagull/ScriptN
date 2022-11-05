@@ -16,7 +16,7 @@ export default function tag(...args) {
     } else {
       for (var p in item) {
         if (/^on/.test(p)) {
-          node.addEventListener(p.substr(2, p.length), item[p]);
+          node.addEventListener(p.substring(2, p.length), item[p]);
         } else if (typeof item[p] == 'boolean') {
           if (item[p]) node.setAttribute(p, '');
         } else {

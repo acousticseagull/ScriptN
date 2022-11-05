@@ -2,6 +2,7 @@ import tag from '../tag';
 import { setCursor, remove } from '../utilities/';
 import { toolbox } from '../toolbox';
 import { createDialog } from './dialog';
+import { createScene } from './scene';
 
 export const createCharacter = (content = '') => {
   return tag(
