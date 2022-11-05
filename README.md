@@ -1,3 +1,3 @@
 # ScriptN
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/js-ux5u6p)
+Simple program for writing a movie script.
