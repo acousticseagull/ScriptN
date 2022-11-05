@@ -3,6 +3,7 @@ import { setCursor, remove } from '../utilities/';
 import { toolbox } from '../toolbox';
 import { createDialog } from './dialog';
 import { createScene } from './scene';
+import { createAction } from './action';
 
 export const createCharacter = (content = '') => {
   return tag(
