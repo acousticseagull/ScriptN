@@ -17,13 +17,10 @@ export const toolbox = (target, collapsed = true) => {
         target.classList.contains('action') ||
         target.classList.contains('heading'),
       onclick: (e) => {
-        target.insertAdjacentElement(
-          'beforebegin',
-          createAction(target.textContent)
-        );
+        const node = createAction(target.textContent);
+        target.insertAdjacentElement('beforebegin', node);
         target.remove();
-        e.target.parentElement.style.top = `${target.offsetTop}px`;
-        e.target.parentElement.style.left = `${target.offsetLeft - 110}px`;
+        setCursor(node);
         Array.from(e.target.parentElement.children).forEach(
           (item) => (item.disabled = false)
         );
@@ -43,13 +40,10 @@ export const toolbox = (target, collapsed = true) => {
         target.classList.contains('character') ||
         target.classList.contains('heading'),
       onclick: (e) => {
-        target.insertAdjacentElement(
-          'beforebegin',
-          createCharacter(target.textContent)
-        );
+        const node = createCharacter(target.textContent);
+        target.insertAdjacentElement('beforebegin', node);
         target.remove();
-        e.target.parentElement.style.top = `${target.offsetTop}px`;
-        e.target.parentElement.style.left = `${target.offsetLeft - 110}px`;
+        setCursor(node);
         Array.from(e.target.parentElement.children).forEach(
           (item) => (item.disabled = false)
         );
@@ -69,13 +63,10 @@ export const toolbox = (target, collapsed = true) => {
         target.classList.contains('dialog') ||
         target.classList.contains('heading'),
       onclick: (e) => {
-        target.insertAdjacentElement(
-          'beforebegin',
-          createDialog(target.textContent)
-        );
+        const node = createDialog(target.textContent);
+        target.insertAdjacentElement('beforebegin', node);
         target.remove();
-        e.target.parentElement.style.top = `${target.offsetTop}px`;
-        e.target.parentElement.style.left = `${target.offsetLeft - 110}px`;
+        setCursor(node);
         Array.from(e.target.parentElement.children).forEach(
           (item) => (item.disabled = false)
         );
@@ -151,7 +142,7 @@ export const toolbox = (target, collapsed = true) => {
       class: `toolbox ${collapsed ? 'collapsed' : ''}`,
       style: `
         top: ${target.offsetTop}px;
-        left: ${target.offsetLeft - 25}px;
+        left: ${target.offsetLeft - 23}px;
       `,
     },
     collapsed
