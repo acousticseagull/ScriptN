@@ -16,9 +16,15 @@ body {
   width: 100%;
   border: 1px solid lightgray;
   background-color: white;
-  padding: 0.25em;
-  box-shadow: 0 1px 3px 0 lightgray;
+  padding: 0.5em;
   z-index: 1;
+  box-shadow: 0 1px 3px 0 lightgray;
+}
+
+@media print {
+  .toolbar {
+    display: none;
+  }
 }
 
 .toolbar > .title {
@@ -138,12 +144,11 @@ body {
   display: flex;
   flex-direction: column;
   width: 100px;
-  border: 1px solid lightgray;
   background-color: white;
-  padding: 0.25em;
+  padding: 0.5em;
   margin-top: -4px;
   margin-left: 5px;
-  box-shadow: 0 1px 3px 0 lightgray;
+  box-shadow: 0 1px 3px 1px lightgray;
   border-radius: 5px;
   z-index: 1;
 }

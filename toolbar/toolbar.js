@@ -35,11 +35,14 @@ const load = (target) => {
   script.content.forEach(({ heading, blocks }) => {
     const scene = createScene(heading);
 
-    if (blocks.length) scene.append(...blocks.map(({ type, content }) => {
-      if (type === 'action') return createAction(content);
-      if (type === 'character') return createCharacter(content);
-      if (type === 'dialog') return createDialog(content);
-    }));
+    if (blocks.length)
+      scene.append(
+        ...blocks.map(({ type, content }) => {
+          if (type === 'action') return createAction(content);
+          if (type === 'character') return createCharacter(content);
+          if (type === 'dialog') return createDialog(content);
+        })
+      );
 
     target.append(scene);
   });
@@ -54,3 +57,9 @@ export const toolbar = (target) => {
     ])
   );
 };
+
+let timeout;
+document.addEventListener('keydown', () => {
+  if (timeout) clearTimeout(timeout);
+  timeout = setTimeout(save, 5000);
+});
