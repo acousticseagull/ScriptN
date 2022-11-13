@@ -1,8 +1,10 @@
 import './style.css';
 import { createScene } from './create';
-import { toolbox } from './toolbox';
+import { toolbar } from './toolbar';
 
 const app = document.getElementById('app');
+
+toolbar(app);
 
 let scene = createScene();
 app.append(scene);
