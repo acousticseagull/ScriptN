@@ -1,6 +1,4 @@
-export {
-  createScene,
-  createAction,
-  createCharacter,
-  createDialog,
-} from './scene';
+export { createScene } from './scene';
+export { createAction } from './action';
+export { createCharacter } from './character';
+export { createDialog } from './dialog';
