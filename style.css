@@ -79,9 +79,12 @@ body {
 
 .scene {
   position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
   margin: 1em auto;
   width: 500px;
-  padding: 0.5em 0;
+  padding: 0.5em 1em;
 }
 
 .scene:focus-within {
@@ -89,14 +92,16 @@ body {
 }
 
 .scene:focus-within::after {
-  margin: 1em 0 1em;
+  left: 0;
+  bottom: -12px;
   content: '(CTRL+ENTER ADD SCENE';
 }
 
 .heading {
   text-transform: uppercase;
-  margin: 0.5em 1em 1em;
+  margin: 0.5em 0 1em;
   outline: none;
+  width: 100%;
 }
 .heading:empty::after {
   content: 'SCENE HEADING BLOCK';
@@ -106,7 +111,8 @@ body {
 }
 
 .action {
-  margin: 0.5em 1em 1em;
+  width: 100%;
+  margin: 0.5em 0 1em;
 }
 .action:focus {
   outline: none;
@@ -123,7 +129,7 @@ body {
 
 .character {
   text-transform: uppercase;
-  margin: 1.25em 0 0.5em 14em;
+  margin: 1.25em 0 0.5em 0;
   outline: none;
 }
 .character:last-child {
@@ -140,7 +146,8 @@ body {
 }
 
 .dialog {
-  margin: 0 10em 1em 8em;
+  width: 280px;
+  margin: 0 0 1em;
   outline: none;
 }
 .dialog:not(:empty):focus::after {
