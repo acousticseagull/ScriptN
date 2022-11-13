@@ -112,7 +112,7 @@ body {
 
 .action {
   width: 100%;
-  margin: 0.5em 0 1em;
+  margin: 0.5em 0 0.5em;
 }
 .action:focus {
   outline: none;
@@ -129,7 +129,7 @@ body {
 
 .character {
   text-transform: uppercase;
-  margin: 1.25em 0 0.5em 0;
+  margin: 1em 0 0.5em 0;
   outline: none;
 }
 .character:last-child {
@@ -147,7 +147,7 @@ body {
 
 .dialog {
   width: 280px;
-  margin: 0 0 1em;
+  margin: 0 0 0.5em;
   outline: none;
 }
 .dialog:not(:empty):focus::after {
