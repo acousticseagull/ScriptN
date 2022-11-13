@@ -19,9 +19,6 @@ const save = () => {
       })),
     })),
   });
-
-  console.log(script);
-
   localStorage.setItem('script', script);
 };
 

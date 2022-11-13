@@ -1,5 +1,10 @@
 import tag from '../tag';
-import { createScene } from '../create';
+import {
+  createScene,
+  createAction,
+  createCharacter,
+  createDialog,
+} from '../create';
 import { remove, setCursor } from '../utilities';
 
 export const toolbox = (target, collapsed = true) => {
@@ -12,7 +17,11 @@ export const toolbox = (target, collapsed = true) => {
         target.classList.contains('action') ||
         target.classList.contains('heading'),
       onclick: (e) => {
-        target.className = 'action';
+        target.insertAdjacentElement(
+          'beforebegin',
+          createAction(target.textContent)
+        );
+        target.remove();
         e.target.parentElement.style.top = `${target.offsetTop}px`;
         e.target.parentElement.style.left = `${target.offsetLeft - 110}px`;
         Array.from(e.target.parentElement.children).forEach(
@@ -34,7 +43,11 @@ export const toolbox = (target, collapsed = true) => {
         target.classList.contains('character') ||
         target.classList.contains('heading'),
       onclick: (e) => {
-        target.className = 'character';
+        target.insertAdjacentElement(
+          'beforebegin',
+          createCharacter(target.textContent)
+        );
+        target.remove();
         e.target.parentElement.style.top = `${target.offsetTop}px`;
         e.target.parentElement.style.left = `${target.offsetLeft - 110}px`;
         Array.from(e.target.parentElement.children).forEach(
@@ -56,7 +69,11 @@ export const toolbox = (target, collapsed = true) => {
         target.classList.contains('dialog') ||
         target.classList.contains('heading'),
       onclick: (e) => {
-        target.className = 'dialog';
+        target.insertAdjacentElement(
+          'beforebegin',
+          createDialog(target.textContent)
+        );
+        target.remove();
         e.target.parentElement.style.top = `${target.offsetTop}px`;
         e.target.parentElement.style.left = `${target.offsetLeft - 110}px`;
         Array.from(e.target.parentElement.children).forEach(
