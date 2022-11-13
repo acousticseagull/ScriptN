@@ -25,6 +25,8 @@ const save = () => {
 const load = (target) => {
   const script = JSON.parse(localStorage.getItem('script'));
 
+  if (!script) return;
+
   document.querySelectorAll('.scene').forEach((item) => item.remove());
 
   document.querySelector('.toolbar > .title').innerText = script.title;
