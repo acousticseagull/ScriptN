@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+::selection {
+  color: white;
+  background: deepskyblue;
+}
+
 body {
   margin: 0;
   font-family: monospace;
@@ -16,7 +21,7 @@ body {
   width: 100%;
   border: 1px solid lightgray;
   background-color: white;
-  padding: 0.5em;
+  padding: 0.5em 1em;
   z-index: 1;
   box-shadow: 0 1px 3px 0 lightgray;
 }
@@ -76,7 +81,7 @@ body {
   position: relative;
   margin: 1em auto;
   width: 500px;
-  padding: 0.5em 0;
+  padding: 0.5em 0.5em;
 }
 
 .heading {
@@ -141,13 +146,12 @@ body {
 
 .toolbox {
   position: absolute;
+  margin-top: -6px;
+  margin-left: -6px;
   display: flex;
   flex-direction: column;
-  width: 100px;
   background-color: white;
   padding: 0.5em;
-  margin-top: -4px;
-  margin-left: 5px;
   box-shadow: 0 1px 3px 1px lightgray;
   border-radius: 5px;
   z-index: 1;
@@ -193,7 +197,6 @@ body {
 }
 .toolbox > button.collapse {
   width: 20px;
-  margin-left: auto;
 }
 .toolbox > button:active {
   background-color: white;
