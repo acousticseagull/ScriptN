@@ -6,16 +6,16 @@ import {
   createDialog,
 } from '../create';
 
-const save = () => {
+export const save = () => {
   const script = JSON.stringify({
-    title: document.querySelector('.title').innerText,
+    title: document.querySelector('.title').textContent,
     content: Array.from(document.querySelectorAll('.scene')).map((scene) => ({
-      heading: scene.querySelector('.heading').innerText,
+      heading: scene.querySelector('.heading').textContent,
       blocks: Array.from(
         document.querySelectorAll('.action, .character, .dialog')
-      ).map(({ className, innerText }) => ({
+      ).map(({ className, textContent }) => ({
         type: className,
-        content: innerText,
+        content: textContent,
       })),
     })),
   });
@@ -29,7 +29,7 @@ const load = (target) => {
 
   document.querySelectorAll('.scene').forEach((item) => item.remove());
 
-  document.querySelector('.toolbar > .title').innerText = script.title;
+  document.querySelector('.toolbar > .title').textContent = script.title;
 
   script.content.forEach(({ heading, blocks }) => {
     const scene = createScene(heading);
@@ -56,9 +56,3 @@ export const toolbar = (target) => {
     ])
   );
 };
-
-let timeout;
-document.addEventListener('keydown', () => {
-  if (timeout) clearTimeout(timeout);
-  timeout = setTimeout(save, 5000);
-});
