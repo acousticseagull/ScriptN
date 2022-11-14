@@ -27,7 +27,7 @@ body {
 }
 
 @media print {
-  .toolbar {
+  .toolbar, .toolbox {
     display: none;
   }
 }
@@ -84,7 +84,13 @@ body {
   align-items: center;
   margin: 1em auto;
   width: 500px;
-  padding: 0.5em 1em;
+  padding: 1em 2.75em;
+}
+
+@media screen and (max-width: 500px) {
+  .scene {
+    width: 95%;
+  }
 }
 
 .scene:focus-within {
@@ -108,6 +114,10 @@ body {
 }
 .heading:not(:empty):focus::after {
   content: '(ENTER KEY ADD ACTION BLOCK)';
+}
+
+.heading:first-child {
+  margin-top: 0;
 }
 
 .action {
