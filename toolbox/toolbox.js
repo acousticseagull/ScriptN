@@ -8,6 +8,7 @@ import {
 import { remove, setCursor } from '../utilities';
 
 export const toolbox = (target, collapsed = true) => {
+  const create = {};
   const button = {};
 
   button.action = tag(
@@ -97,12 +98,114 @@ export const toolbox = (target, collapsed = true) => {
     `DELETE`
   );
 
+  create.action = [
+    tag('div', { class: 'title' }, 'CREATE ACTION'),
+    tag(
+      'button',
+      {
+        disabled: target.classList.contains('heading'),
+        onclick: (e) => {
+          const tag = createAction();
+          target.insertAdjacentElement('beforebegin', tag);
+          setCursor(tag);
+        },
+        onmousedown: (e) => {
+          e.preventDefault();
+        },
+      },
+      `ABOVE`
+    ),
+    tag(
+      'button',
+      {
+        onclick: (e) => {
+          const tag = createAction();
+          target.insertAdjacentElement('afterend', tag);
+          setCursor(tag);
+        },
+        onmousedown: (e) => {
+          e.preventDefault();
+        },
+      },
+      `BELOW`
+    ),
+  ];
+
+  create.character = [
+    tag('div', { class: 'title' }, 'CREATE CHARACTER'),
+    tag(
+      'button',
+      {
+        disabled: target.classList.contains('heading'),
+        onclick: (e) => {
+          const tag = createCharacter();
+          target.insertAdjacentElement('beforebegin', tag);
+          setCursor(tag);
+        },
+        onmousedown: (e) => {
+          e.preventDefault();
+        },
+      },
+      `ABOVE`
+    ),
+    tag(
+      'button',
+      {
+        onclick: (e) => {
+          const tag = createCharacter();
+          target.insertAdjacentElement('afterend', tag);
+          setCursor(tag);
+        },
+        onmousedown: (e) => {
+          e.preventDefault();
+        },
+      },
+      `AFTER`
+    ),
+  ];
+
+  create.dialog = [
+    tag('div', { class: 'title' }, 'CREATE DIALOG'),
+    tag(
+      'button',
+      {
+        disabled: target.classList.contains('heading'),
+        onclick: (e) => {
+          const tag = createDialog();
+          target.insertAdjacentElement('beforebegin', tag);
+          setCursor(tag);
+        },
+        onmousedown: (e) => {
+          e.preventDefault();
+        },
+      },
+      `ABOVE`
+    ),
+    tag(
+      'button',
+      {
+        onclick: (e) => {
+          const tag = createDialog();
+          target.insertAdjacentElement('afterend', tag);
+          setCursor(tag);
+        },
+        onmousedown: (e) => {
+          e.preventDefault();
+        },
+      },
+      `BELOW`
+    ),
+  ];
+
   const menu = [
     tag('div', { class: 'title' }, 'CHANGE BLOCK'),
     button.action,
     button.character,
     button.dialog,
     button.delete,
+    ...create.action,
+    ...create.character,
+    ...create.dialog,
     tag('div', { class: 'title' }, 'CREATE SCENE'),
     tag(
       'button',
@@ -110,7 +213,6 @@ export const toolbox = (target, collapsed = true) => {
         onclick: (e) => {
           const tag = createScene();
           target.parentElement.insertAdjacentElement('beforebegin', tag);
-          toolbox(tag);
           setCursor(tag.querySelector('.heading'));
         },
         onmousedown: (e) => {
@@ -125,7 +227,6 @@ export const toolbox = (target, collapsed = true) => {
         onclick: (e) => {
           const tag = createScene();
           target.parentElement.insertAdjacentElement('afterend', tag);
-          toolbox(tag);
           setCursor(tag.querySelector('.heading'));
         },
         onmousedown: (e) => {
