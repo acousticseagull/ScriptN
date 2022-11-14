@@ -11,6 +11,9 @@ body {
   margin: 0;
   font-family: monospace;
   font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .toolbar {
@@ -18,29 +21,30 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  border: 1px solid lightgray;
+  max-width: 500px;
   background-color: white;
-  padding: 0.5em 1em;
+  padding: 1em 0;
   z-index: 1;
-  box-shadow: 0 1px 3px 0 lightgray;
 }
 
 @media print {
-  .toolbar, .toolbox {
+  .toolbar,
+  .toolbox {
     display: none;
   }
 }
 
 .toolbar > .title {
   outline: 0;
+  width: 300px;
+  margin: 0 1em;
+  text-align: center;
 }
 
 .toolbar > button {
   min-width: 2rem;
   border: 1px solid deepskyblue;
   background-color: white;
-  margin-bottom: 0.25em;
   border-radius: 5px;
   text-transform: uppercase;
   font-size: 10px;
@@ -82,7 +86,7 @@ body {
   display: flex;
   flex-flow: column;
   align-items: center;
-  margin: 1em auto;
+  margin: 1em 0;
   width: 500px;
   padding: 1em 2.75em;
 }
@@ -105,7 +109,7 @@ body {
 
 .heading {
   text-transform: uppercase;
-  margin: 0.5em 0 1em;
+  margin: 0.5em 0 0.75em;
   outline: none;
   width: 100%;
 }
@@ -156,7 +160,7 @@ body {
 }
 
 .dialog {
-  width: 280px;
+  width: 290px;
   margin: 0 0 0.5em;
   outline: none;
 }
