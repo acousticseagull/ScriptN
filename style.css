@@ -36,9 +36,11 @@ body {
 
 .toolbar > .title {
   outline: 0;
-  width: 300px;
+  width: 200px;
   margin: 0 1em;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .toolbar > button {
