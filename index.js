@@ -29,3 +29,7 @@ document.addEventListener('keydown', () => {
   if (timeout) clearTimeout(timeout);
   timeout = setTimeout(() => save(), 5000);
 });
+
+window.addEventListener('resize', () => {
+  document.querySelector(':focus')?.blur();
+});
