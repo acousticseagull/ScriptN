@@ -197,15 +197,7 @@ export const toolbox = (target, collapsed = true) => {
     ),
   ];
 
-  const menu = [
-    tag('div', { class: 'title' }, 'CHANGE BLOCK'),
-    button.action,
-    button.character,
-    button.dialog,
-    button.delete,
-    ...create.action,
-    ...create.character,
-    ...create.dialog,
+  create.scene = [
     tag('div', { class: 'title' }, 'CREATE SCENE'),
     tag(
       'button',
@@ -235,6 +227,18 @@ export const toolbox = (target, collapsed = true) => {
       },
       `BELOW`
     ),
+  ];
+
+  const menu = [
+    tag('div', { class: 'title' }, 'CHANGE BLOCK'),
+    button.action,
+    button.character,
+    button.dialog,
+    button.delete,
+    ...create.action,
+    ...create.character,
+    ...create.dialog,
+    ...create.scene,
   ];
 
   const node = tag(
