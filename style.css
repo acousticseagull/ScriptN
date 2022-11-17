@@ -144,6 +144,7 @@ body {
 }
 
 .character {
+  min-width: 100px; 
   text-transform: uppercase;
   margin: 1em 0 0.5em 0;
   outline: none;
