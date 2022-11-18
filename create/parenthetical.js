@@ -2,6 +2,7 @@ import tag from '../tag';
 import { setCursor, remove } from '../utilities/';
 import { toolbox } from '../toolbox';
 import { createScene } from './scene';
+import { createDialog } from './dialog';
 
 export const createParenthetical = (content = '') => {
   return tag(

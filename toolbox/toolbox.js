@@ -268,7 +268,7 @@ export const toolbox = (target, collapsed = true) => {
       class: `toolbox ${collapsed ? 'collapsed' : ''}`,
       style: `
         top: ${target.offsetTop}px;
-        left: ${target.offsetLeft - 23}px;
+        left: ${target.offsetLeft - 26}px;
       `,
     },
     collapsed
