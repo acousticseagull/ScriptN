@@ -2,6 +2,7 @@ import tag from '../tag';
 import { setCursor, remove } from '../utilities/';
 import { toolbox } from '../toolbox';
 import { createDialog } from './dialog';
+import { createParenthetical } from './parenthetical';
 import { createScene } from './scene';
 import { createAction } from './action';
 
@@ -19,6 +20,13 @@ export const createCharacter = (content = '') => {
             const tag = createScene();
             e.target.parentElement.insertAdjacentElement('afterend', tag);
             setCursor(tag.querySelector('.heading'));
+            return;
+          }
+
+          if (e.altKey) {
+            const tag = createParenthetical();
+            e.target.insertAdjacentElement('afterend', tag);
+            setCursor(tag);
             return;
           }
 

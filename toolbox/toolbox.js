@@ -4,7 +4,7 @@ import {
   createAction,
   createCharacter,
   createDialog,
-  createParenthetical
+  createParenthetical,
 } from '../create';
 import { remove, setCursor } from '../utilities';
 
@@ -101,101 +101,107 @@ export const toolbox = (target, collapsed = true) => {
 
   create.action = [
     tag('div', { class: 'title' }, 'CREATE ACTION'),
-    tag(
-      'button',
-      {
-        disabled: target.classList.contains('heading'),
-        onclick: (e) => {
-          const tag = createAction();
-          target.insertAdjacentElement('beforebegin', tag);
-          setCursor(tag);
+    tag('div', { class: 'button-group' }, [
+      tag(
+        'button',
+        {
+          disabled: target.classList.contains('heading'),
+          onclick: (e) => {
+            const tag = createAction();
+            target.insertAdjacentElement('beforebegin', tag);
+            setCursor(tag);
+          },
+          onmousedown: (e) => {
+            e.preventDefault();
+          },
         },
-        onmousedown: (e) => {
-          e.preventDefault();
+        `ABOVE`
+      ),
+      tag(
+        'button',
+        {
+          onclick: (e) => {
+            const tag = createAction();
+            target.insertAdjacentElement('afterend', tag);
+            setCursor(tag);
+          },
+          onmousedown: (e) => {
+            e.preventDefault();
+          },
         },
-      },
-      `ABOVE`
-    ),
-    tag(
-      'button',
-      {
-        onclick: (e) => {
-          const tag = createAction();
-          target.insertAdjacentElement('afterend', tag);
-          setCursor(tag);
-        },
-        onmousedown: (e) => {
-          e.preventDefault();
-        },
-      },
-      `BELOW`
-    ),
+        `BELOW`
+      ),
+    ]),
   ];
 
   create.character = [
     tag('div', { class: 'title' }, 'CREATE CHARACTER'),
-    tag(
-      'button',
-      {
-        disabled: target.classList.contains('heading'),
-        onclick: (e) => {
-          const tag = createCharacter();
-          target.insertAdjacentElement('beforebegin', tag);
-          setCursor(tag);
+    tag('div', { class: 'button-group' }, [
+      tag(
+        'button',
+        {
+          disabled: target.classList.contains('heading'),
+          onclick: (e) => {
+            const tag = createCharacter();
+            target.insertAdjacentElement('beforebegin', tag);
+            setCursor(tag);
+          },
+          onmousedown: (e) => {
+            e.preventDefault();
+          },
         },
-        onmousedown: (e) => {
-          e.preventDefault();
+        `ABOVE`
+      ),
+      tag(
+        'button',
+        {
+          onclick: (e) => {
+            const tag = createCharacter();
+            target.insertAdjacentElement('afterend', tag);
+            setCursor(tag);
+          },
+          onmousedown: (e) => {
+            e.preventDefault();
+          },
         },
-      },
-      `ABOVE`
-    ),
-    tag(
-      'button',
-      {
-        onclick: (e) => {
-          const tag = createCharacter();
-          target.insertAdjacentElement('afterend', tag);
-          setCursor(tag);
-        },
-        onmousedown: (e) => {
-          e.preventDefault();
-        },
-      },
-      `AFTER`
-    ),
+        `AFTER`
+      ),
+    ]),
   ];
 
   create.dialog = [
     tag('div', { class: 'title' }, 'CREATE DIALOG'),
-    tag(
-      'button',
-      {
-        disabled: target.classList.contains('heading'),
-        onclick: (e) => {
-          const tag = createDialog();
-          target.insertAdjacentElement('beforebegin', tag);
-          setCursor(tag);
+    tag('div', { class: 'button-group' }, [
+      tag(
+        'button',
+        {
+          disabled: target.classList.contains('heading'),
+          onclick: (e) => {
+            const tag = createDialog();
+            target.insertAdjacentElement('beforebegin', tag);
+            setCursor(tag);
+          },
+          onmousedown: (e) => {
+            e.preventDefault();
+          },
         },
-        onmousedown: (e) => {
-          e.preventDefault();
+        `ABOVE`
+      ),
+      tag(
+        'button',
+        {
+          onclick: (e) => {
+            const tag = createDialog();
+            target.insertAdjacentElement('afterend', tag);
+            setCursor(tag);
+          },
+          onmousedown: (e) => {
+            e.preventDefault();
+          },
         },
-      },
-      `ABOVE`
-    ),
-    tag(
-      'button',
-      {
-        onclick: (e) => {
-          const tag = createDialog();
-          target.insertAdjacentElement('afterend', tag);
-          setCursor(tag);
-        },
-        onmousedown: (e) => {
-          e.preventDefault();
-        },
-      },
-      `BELOW`
-    ),
+        `BELOW`
+      ),
+    ]),
   ];
 
   create.parenthetical = [
@@ -203,7 +209,9 @@ export const toolbox = (target, collapsed = true) => {
     tag(
       'button',
       {
-        disabled: target.classList.contains('heading') || !target.classList.contains('character'),
+        disabled:
+          target.classList.contains('heading') ||
+          !target.classList.contains('character'),
         onclick: (e) => {
           const tag = createParenthetical();
           target.insertAdjacentElement('afterend', tag);
@@ -219,34 +227,36 @@ export const toolbox = (target, collapsed = true) => {
 
   create.scene = [
     tag('div', { class: 'title' }, 'CREATE SCENE'),
-    tag(
-      'button',
-      {
-        onclick: (e) => {
-          const tag = createScene();
-          target.parentElement.insertAdjacentElement('beforebegin', tag);
-          setCursor(tag.querySelector('.heading'));
+    tag('div', { class: 'button-group' }, [
+      tag(
+        'button',
+        {
+          onclick: (e) => {
+            const tag = createScene();
+            target.parentElement.insertAdjacentElement('beforebegin', tag);
+            setCursor(tag.querySelector('.heading'));
+          },
+          onmousedown: (e) => {
+            e.preventDefault();
+          },
         },
-        onmousedown: (e) => {
-          e.preventDefault();
+        `ABOVE`
+      ),
+      tag(
+        'button',
+        {
+          onclick: (e) => {
+            const tag = createScene();
+            target.parentElement.insertAdjacentElement('afterend', tag);
+            setCursor(tag.querySelector('.heading'));
+          },
+          onmousedown: (e) => {
+            e.preventDefault();
+          },
         },
-      },
-      `ABOVE`
-    ),
-    tag(
-      'button',
-      {
-        onclick: (e) => {
-          const tag = createScene();
-          target.parentElement.insertAdjacentElement('afterend', tag);
-          setCursor(tag.querySelector('.heading'));
-        },
-        onmousedown: (e) => {
-          e.preventDefault();
-        },
-      },
-      `BELOW`
-    ),
+        `BELOW`
+      ),
+    ]),
   ];
 
   const menu = [
