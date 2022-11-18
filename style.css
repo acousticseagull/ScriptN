@@ -149,7 +149,7 @@ body {
 .character {
   width: 10em;
   text-transform: uppercase;
-  margin: .5em 0 0 14em;
+  margin: .5em 0 .5em 14em;
   outline: none;
   align-self: flex-start;
 }
@@ -168,7 +168,7 @@ body {
 
 .parenthetical {
   width: 10em;
-  margin: 0 0 .25em 14em;
+  margin: 0 0 .5em 14em;
   outline: none;
   align-self: flex-start;
 }
