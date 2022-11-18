@@ -279,8 +279,8 @@ body {
 @media print {
   .toolbar,
   .toolbox,
-  *::before,
-  *::after {
+  *:not(.parenthetical)::before,
+  *:not(.parenthetical)::after {
     display: none;
   }
 }
