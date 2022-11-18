@@ -210,14 +210,13 @@ body {
 .toolbox .title {
   font-size: 10px;
   color: gray;
-  margin-bottom: 0.25em;
 }
 .toolbox .title:not(:first-child) {
   margin-top: 0.5em;
 }
 .toolbox button {
   width: 100%;
-  margin: 1px 0;
+  margin: 1px 0 0;
   border: 1px solid deepskyblue;
   background-color: white;
   border-radius: 5px;

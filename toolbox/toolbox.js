@@ -81,6 +81,29 @@ export const toolbox = (target, collapsed = true) => {
     `Dialog`
   );
 
+  button.parenthetical = tag(
+    'button',
+    {
+      disabled:
+        target.classList.contains('parenthetical') ||
+        target.classList.contains('heading'),
+      onclick: (e) => {
+        const node = createParenthetical(target.textContent);
+        target.insertAdjacentElement('beforebegin', node);
+        target.remove();
+        setCursor(node);
+        Array.from(e.target.parentElement.children).forEach(
+          (item) => (item.disabled = false)
+        );
+        e.target.disabled = target.classList.contains('parenthetical');
+      },
+      onmousedown: (e) => {
+        e.preventDefault();
+      },
+    },
+    `Parenthetical`
+  );
+
   button.delete = tag(
     'button',
     {
@@ -263,6 +286,7 @@ export const toolbox = (target, collapsed = true) => {
     tag('div', { class: 'title' }, 'CHANGE BLOCK'),
     button.action,
     button.character,
+    button.parenthetical,
     button.dialog,
     button.delete,
     ...create.action,
