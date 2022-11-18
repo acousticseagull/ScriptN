@@ -187,7 +187,7 @@ export const toolbox = (target, collapsed = true) => {
             e.preventDefault();
           },
         },
-        `AFTER`
+        `BELOW`
       ),
     ]),
   ];
