@@ -67,6 +67,8 @@ body {
 .heading::after,
 .action::after,
 .dialog::after,
+.parenthetical:focus::after,
+.parenthetical:empty::after,
 .character::after {
   position: absolute;
   margin-top: -2px;
@@ -79,6 +81,7 @@ body {
 .heading:empty::after,
 .action:empty::after,
 .dialog:empty::after,
+.parenthetical:empty::after,
 .character:empty::after {
   margin-top: 3px;
 }
@@ -111,7 +114,7 @@ body {
 
 .heading {
   text-transform: uppercase;
-  margin: 0.5em 0 0.75em;
+  margin: 0.5em 0 1em;
   outline: none;
   width: 100%;
 }
@@ -128,7 +131,7 @@ body {
 
 .action {
   width: 100%;
-  margin: 0.5em 0 0.5em;
+  margin: .5em 0 1em;
 }
 .action:focus {
   outline: none;
@@ -144,9 +147,9 @@ body {
 }
 
 .character {
-  width: 10em; 
+  width: 10em;
   text-transform: uppercase;
-  margin: 1em 0 0.5em 14em;
+  margin: .5em 0 0 14em;
   outline: none;
   align-self: flex-start;
 }
@@ -163,9 +166,32 @@ body {
   margin-bottom: 0.5em;
 }
 
+.parenthetical {
+  width: 10em;
+  margin: 0 0 .25em 14em;
+  outline: none;
+  align-self: flex-start;
+}
+.parenthetical:not(:empty):focus::after {
+  content: '(ENTER KEY ADD DIALOG BLOCK)';
+}
+.parenthetical:empty::after {
+  content: 'PARENTHETICAL BLOCK (ENTER KEY CHANGE TO DIALOG BLOCK)';
+}
+.parenthetical:not(:empty):not(:focus):before {
+  content: '(';
+}
+.parenthetical:not(:empty):not(:focus):after {
+  color: black;
+  content: ')';
+}
+.parenthetical:last-child {
+  margin-bottom: 0.5em;
+}
+
 .dialog {
   width: 24em;
-  margin: 0 0 0.5em;
+  margin: 0 0 1em;
   outline: none;
 }
 .dialog:not(:empty):focus::after {

@@ -3,6 +3,7 @@ import {
   createScene,
   createAction,
   createCharacter,
+  createParenthetical,
   createDialog,
 } from '../create';
 
@@ -12,7 +13,7 @@ export const save = () => {
     content: Array.from(document.querySelectorAll('.scene')).map((scene) => ({
       heading: scene.querySelector('.heading').textContent,
       blocks: Array.from(
-        document.querySelectorAll('.action, .character, .dialog')
+        document.querySelectorAll('.action, .character, .parenthetical, .dialog')
       ).map(({ className, textContent }) => ({
         type: className,
         content: textContent,
@@ -39,6 +40,7 @@ const load = (target) => {
         ...blocks.map(({ type, content }) => {
           if (type === 'action') return createAction(content);
           if (type === 'character') return createCharacter(content);
+          if (type === 'parenthetical') return createParenthetical(content);
           if (type === 'dialog') return createDialog(content);
         })
       );

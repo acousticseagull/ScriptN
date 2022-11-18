@@ -4,6 +4,7 @@ import {
   createAction,
   createCharacter,
   createDialog,
+  createParenthetical
 } from '../create';
 import { remove, setCursor } from '../utilities';
 
@@ -197,6 +198,25 @@ export const toolbox = (target, collapsed = true) => {
     ),
   ];
 
+  create.parenthetical = [
+    tag('div', { class: 'title' }, 'CREATE PARENTHETICAL'),
+    tag(
+      'button',
+      {
+        disabled: target.classList.contains('heading') || !target.classList.contains('character'),
+        onclick: (e) => {
+          const tag = createParenthetical();
+          target.insertAdjacentElement('afterend', tag);
+          setCursor(tag);
+        },
+        onmousedown: (e) => {
+          e.preventDefault();
+        },
+      },
+      `BELOW`
+    ),
+  ];
+
   create.scene = [
     tag('div', { class: 'title' }, 'CREATE SCENE'),
     tag(
@@ -237,6 +257,7 @@ export const toolbox = (target, collapsed = true) => {
     button.delete,
     ...create.action,
     ...create.character,
+    ...create.parenthetical,
     ...create.dialog,
     ...create.scene,
   ];
