@@ -6,6 +6,7 @@ import {
   createParenthetical,
   createDialog,
 } from '../create';
+import { setCursor } from '../utilities';
 
 export const save = () => {
   const script = JSON.stringify({
@@ -13,7 +14,9 @@ export const save = () => {
     content: Array.from(document.querySelectorAll('.scene')).map((scene) => ({
       heading: scene.querySelector('.heading').textContent,
       blocks: Array.from(
-        document.querySelectorAll('.action, .character, .parenthetical, .dialog')
+        document.querySelectorAll(
+          '.action, .character, .parenthetical, .dialog'
+        )
       ).map(({ className, textContent }) => ({
         type: className,
         content: textContent,
@@ -52,9 +55,28 @@ const load = (target) => {
 export const toolbar = (target) => {
   target.append(
     tag('div', { class: 'toolbar' }, [
-      tag('button', { onclick: save }, 'Save'),
+      tag('div', [tag('button', { onclick: save }, 'Save')]),
+
       tag('div', { class: 'title', contenteditable: true }, 'Untitled'),
-      tag('button', { onclick: () => load(target) }, 'Load'),
+      tag('div', [
+        tag('button', { onclick: () => load(target) }, 'Load'),
+        tag(
+          'button',
+          {
+            class: 'new',
+            onclick: () => {
+              target
+                .querySelectorAll('.scene')
+                .forEach((item) => item.remove());
+              const tag = createScene();
+              document.querySelector('.title').textContent = 'Untitled';
+              target.append(tag);
+              setCursor(tag.querySelector('.heading'));
+            },
+          },
+          'New'
+        ),
+      ]),
     ])
   );
 };
