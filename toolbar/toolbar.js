@@ -54,10 +54,13 @@ const load = (target) => {
 
 export const toolbar = (target) => {
   target.append(
-    tag('div', { class: 'toolbar' }, [
-      tag('div', [tag('button', { onclick: save }, 'Save')]),
+    tag(
+      'div',
+      { class: 'toolbar' },
+      tag('div', tag('button', { onclick: save }, 'Save')),
       tag('div', { class: 'title', contenteditable: true }, 'Untitled'),
-      tag('div', [
+      tag(
+        'div',
         tag('button', { onclick: () => load(target) }, 'Load'),
         tag(
           'button',
@@ -74,8 +77,8 @@ export const toolbar = (target) => {
             },
           },
           'New'
-        ),
-      ]),
-    ])
+        )
+      )
+    )
   );
 };
