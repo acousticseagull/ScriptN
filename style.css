@@ -85,9 +85,10 @@ body {
   background-color: white;
   color: gray;
   font-size: 0.8em;
-  padding: 1em 0;
+  height: 3em;
   z-index: 1;
   width: 500px;
+  text-transform: uppercase;
 }
 
 .scene::after,
