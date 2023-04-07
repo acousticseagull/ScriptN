@@ -6,7 +6,8 @@ import {
   createParenthetical,
   createDialog,
 } from '../create';
-import { setCursor, setTitle } from '../utilities';
+import { setCursor } from '../utilities';
+import { setStatusbarContent } from '../statusbar';
 
 let fileHandle;
 
@@ -39,11 +40,15 @@ export const save = async (_, saveAs) => {
     fileHandle = await window.showSaveFilePicker(options);
   const file = await fileHandle.getFile();
 
-  setTitle(file.name);
+  setTitleContent(file.name);
+
+  setStatusbarContent(`Saving...`);
 
   const writable = await fileHandle.createWritable();
   await writable.write(script);
   await writable.close();
+
+  setStatusbarContent(`Last saved at ${new Date().toLocaleTimeString()}`);
 };
 
 export const load = async (target) => {
@@ -67,9 +72,11 @@ export const load = async (target) => {
 
   if (!script) return;
 
+  setStatusbarContent('');
+
   document.querySelectorAll('.scene').forEach((item) => item.remove());
 
-  setTitle(file.name);
+  setTitleContent(file.name);
 
   script.content.forEach(({ heading, blocks }) => {
     const scene = createScene(heading);
@@ -89,6 +96,13 @@ export const load = async (target) => {
 };
 
 const print = () => window.print();
+
+export const setTitleContent = (title) => {
+  document.querySelector('.toolbar > .title').textContent = title.replace(
+    '.json',
+    ''
+  );
+};
 
 export const toolbar = (target) => {
   target.append(

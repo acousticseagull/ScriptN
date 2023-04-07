@@ -6,10 +6,12 @@ import {
   createDialog,
 } from './create';
 import { toolbar, save, load } from './toolbar';
+import { statusbar } from './statusbar';
 
 const app = document.getElementById('app');
 
 toolbar(app);
+statusbar(app);
 
 let scene = createScene('');
 
