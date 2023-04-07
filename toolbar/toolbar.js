@@ -109,15 +109,16 @@ export function toolbar() {
   return tag(
     'div',
     { class: 'toolbar' },
-    tag('div', tag('button', { class: 'save', onclick: save }, 'Save')),
     tag(
       'div',
-      tag('button', { onclick: () => save(null, true) }, 'Save as...')
+      tag('button', { class: 'save', onclick: save }, 'Save'),
+      tag('button', { onclick: () => save(null, true) }, 'Save as...'),
+      tag('button', { class: 'print', onclick: print }, 'Print')
     ),
-    tag('div', tag('button', { class: 'print', onclick: print }, 'Print')),
     tag('div', { class: 'title', contenteditable: false }, 'Untitled'),
     tag(
       'div',
+      { class: 'text-align-right' },
       tag('button', { onclick: () => load(this.node) }, 'Load'),
       tag(
         'button',
