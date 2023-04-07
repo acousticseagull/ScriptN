@@ -104,39 +104,38 @@ export const setTitleContent = (title) => {
   );
 };
 
-export const toolbar = (target) => {
-  target.append(
+export function toolbar() {
+  console.log(this);
+  return tag(
+    'div',
+    { class: 'toolbar' },
+    tag('div', tag('button', { class: 'save', onclick: save }, 'Save')),
     tag(
       'div',
-      { class: 'toolbar' },
-      tag('div', tag('button', { class: 'save', onclick: save }, 'Save')),
+      tag('button', { onclick: () => save(null, true) }, 'Save as...')
+    ),
+    tag('div', tag('button', { class: 'print', onclick: print }, 'Print')),
+    tag('div', { class: 'title', contenteditable: false }, 'Untitled'),
+    tag(
+      'div',
+      tag('button', { onclick: () => load(this.node) }, 'Load'),
       tag(
-        'div',
-        tag('button', { onclick: () => save(null, true) }, 'Save as...')
-      ),
-      tag('div', tag('button', { class: 'print', onclick: print }, 'Print')),
-      tag('div', { class: 'title', contenteditable: false }, 'Untitled'),
-      tag(
-        'div',
-        tag('button', { onclick: () => load(target) }, 'Load'),
-        tag(
-          'button',
-          {
-            class: 'new',
-            onclick: () => {
-              fileHandle = null;
-              target
-                .querySelectorAll('.scene')
-                .forEach((item) => item.remove());
-              const tag = createScene();
-              document.querySelector('.title').textContent = 'Untitled';
-              target.append(tag);
-              setCursor(tag.querySelector('.heading'));
-            },
+        'button',
+        {
+          class: 'new',
+          onclick: () => {
+            fileHandle = null;
+            this.node
+              .querySelectorAll('.scene')
+              .forEach((item) => item.remove());
+            const tag = createScene();
+            document.querySelector('.title').textContent = 'Untitled';
+            this.node.append(tag);
+            setCursor(tag.querySelector('.heading'));
           },
-          'New'
-        )
+        },
+        'New'
       )
     )
   );
-};
+}
