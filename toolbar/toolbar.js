@@ -8,7 +8,9 @@ import {
 } from '../create';
 import { setCursor } from '../utilities';
 
-export const save = () => {
+let fileHandle;
+
+export const save = async () => {
   const script = JSON.stringify({
     title: document.querySelector('.title').textContent,
     content: Array.from(document.querySelectorAll('.scene')).map((scene) => ({
@@ -23,11 +25,42 @@ export const save = () => {
       })),
     })),
   });
-  localStorage.setItem('script', script);
+
+  const options = {
+    types: [
+      {
+        accept: {
+          'text/plain': ['.json'],
+        },
+      },
+    ],
+  };
+
+  if (!fileHandle) fileHandle = await window.showSaveFilePicker(options);
+  // const file = await fileHandle.getFile();
+  const writable = await fileHandle.createWritable();
+  await writable.write(script);
+  await writable.close();
 };
 
-const load = (target) => {
-  const script = JSON.parse(localStorage.getItem('script'));
+export const load = async (target) => {
+  const options = {
+    types: [
+      {
+        accept: {
+          'text/plain': '.json',
+        },
+      },
+    ],
+    excludeAcceptAllOption: true,
+  };
+
+  [fileHandle] = await window.showOpenFilePicker(options);
+
+  const file = await fileHandle.getFile();
+  const content = await file.text();
+
+  const script = JSON.parse(content);
 
   if (!script) return;
 
@@ -52,12 +85,15 @@ const load = (target) => {
   });
 };
 
+const print = () => window.print();
+
 export const toolbar = (target) => {
   target.append(
     tag(
       'div',
       { class: 'toolbar' },
-      tag('div', tag('button', { onclick: save }, 'Save')),
+      tag('div', tag('button', { class: 'save', onclick: save }, 'Save')),
+      tag('div', tag('button', { class: 'print', onclick: print }, 'Print')),
       tag('div', { class: 'title', contenteditable: true }, 'Untitled'),
       tag(
         'div',
@@ -67,6 +103,7 @@ export const toolbar = (target) => {
           {
             class: 'new',
             onclick: () => {
+              fileHandle = null;
               target
                 .querySelectorAll('.scene')
                 .forEach((item) => item.remove());

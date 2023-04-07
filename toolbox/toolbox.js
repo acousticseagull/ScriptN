@@ -7,11 +7,13 @@ import {
   createParenthetical,
 } from '../create';
 import { remove, setCursor } from '../utilities';
+import { save } from '../toolbar';
 
 export const toolbox = (target, collapsed = true) => {
   const create = {};
   const button = {};
 
+  // change block to action
   button.action = tag(
     'button',
     {
@@ -27,6 +29,7 @@ export const toolbox = (target, collapsed = true) => {
           (item) => (item.disabled = false)
         );
         e.target.disabled = target.classList.contains('action');
+        save();
       },
       onmousedown: (e) => {
         e.preventDefault();
@@ -35,6 +38,7 @@ export const toolbox = (target, collapsed = true) => {
     `Action`
   );
 
+  // change block to character
   button.character = tag(
     'button',
     {
@@ -50,6 +54,7 @@ export const toolbox = (target, collapsed = true) => {
           (item) => (item.disabled = false)
         );
         e.target.disabled = target.classList.contains('character');
+        save();
       },
       onmousedown: (e) => {
         e.preventDefault();
@@ -58,6 +63,7 @@ export const toolbox = (target, collapsed = true) => {
     `Character`
   );
 
+  // change block to dialog
   button.dialog = tag(
     'button',
     {
@@ -73,6 +79,7 @@ export const toolbox = (target, collapsed = true) => {
           (item) => (item.disabled = false)
         );
         e.target.disabled = target.classList.contains('dialog');
+        save();
       },
       onmousedown: (e) => {
         e.preventDefault();
@@ -81,6 +88,7 @@ export const toolbox = (target, collapsed = true) => {
     `Dialog`
   );
 
+  // change block to parenthetical
   button.parenthetical = tag(
     'button',
     {
@@ -96,6 +104,7 @@ export const toolbox = (target, collapsed = true) => {
           (item) => (item.disabled = false)
         );
         e.target.disabled = target.classList.contains('parenthetical');
+        save();
       },
       onmousedown: (e) => {
         e.preventDefault();
@@ -114,6 +123,7 @@ export const toolbox = (target, collapsed = true) => {
       onclick: (e) => {
         if (target.classList.contains('heading')) remove(target.parentElement);
         else remove(target);
+        save();
       },
       onmousedown: (e) => {
         e.preventDefault();

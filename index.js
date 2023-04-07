@@ -5,7 +5,7 @@ import {
   createParenthetical,
   createDialog,
 } from './create';
-import { toolbar, save } from './toolbar';
+import { toolbar, save, load } from './toolbar';
 
 const app = document.getElementById('app');
 
@@ -30,10 +30,24 @@ app.append(scene);
 document.querySelector('.toolbar .title').textContent =
   'The Sermon on the Mount';
 
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey) {
+    if (e.key === 's') {
+      e.preventDefault();
+      save();
+    }
+
+    if (e.key === 'o') {
+      e.preventDefault();
+      load();
+    }
+  }
+});
+
 let timeout;
 document.addEventListener('keydown', () => {
   if (timeout) clearTimeout(timeout);
-  timeout = setTimeout(() => save(), 5000);
+  timeout = setTimeout(() => save(), 1000);
 });
 
 window.addEventListener('resize', () => {
