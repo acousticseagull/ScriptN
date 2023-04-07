@@ -45,6 +45,10 @@ body {
   color: deepskyblue;
 }
 
+.toolbar button.save {
+  margin-right: 1em;
+}
+
 .toolbar button.print {
   margin-left: 1em;
 }

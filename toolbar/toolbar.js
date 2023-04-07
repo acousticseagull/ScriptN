@@ -10,7 +10,7 @@ import { setCursor, setTitle } from '../utilities';
 
 let fileHandle;
 
-export const save = async () => {
+export const save = async (_, saveAs) => {
   const script = JSON.stringify({
     content: Array.from(document.querySelectorAll('.scene')).map((scene) => ({
       heading: scene.querySelector('.heading').textContent,
@@ -35,7 +35,8 @@ export const save = async () => {
     ],
   };
 
-  if (!fileHandle) fileHandle = await window.showSaveFilePicker(options);
+  if (!fileHandle || saveAs)
+    fileHandle = await window.showSaveFilePicker(options);
   const file = await fileHandle.getFile();
 
   setTitle(file.name);
@@ -95,6 +96,10 @@ export const toolbar = (target) => {
       'div',
       { class: 'toolbar' },
       tag('div', tag('button', { class: 'save', onclick: save }, 'Save')),
+      tag(
+        'div',
+        tag('button', { onclick: () => save(null, true) }, 'Save as...')
+      ),
       tag('div', tag('button', { class: 'print', onclick: print }, 'Print')),
       tag('div', { class: 'title', contenteditable: false }, 'Untitled'),
       tag(
