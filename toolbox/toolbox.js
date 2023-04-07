@@ -113,6 +113,7 @@ export const toolbox = (target, collapsed = true) => {
     `Parenthetical`
   );
 
+  // delete block
   button.delete = tag(
     'button',
     {
@@ -143,6 +144,7 @@ export const toolbox = (target, collapsed = true) => {
             const tag = createAction();
             target.insertAdjacentElement('beforebegin', tag);
             setCursor(tag);
+            save();
           },
           onmousedown: (e) => {
             e.preventDefault();
@@ -157,6 +159,7 @@ export const toolbox = (target, collapsed = true) => {
             const tag = createAction();
             target.insertAdjacentElement('afterend', tag);
             setCursor(tag);
+            save();
           },
           onmousedown: (e) => {
             e.preventDefault();
@@ -178,6 +181,7 @@ export const toolbox = (target, collapsed = true) => {
             const tag = createCharacter();
             target.insertAdjacentElement('beforebegin', tag);
             setCursor(tag);
+            save();
           },
           onmousedown: (e) => {
             e.preventDefault();
@@ -192,6 +196,7 @@ export const toolbox = (target, collapsed = true) => {
             const tag = createCharacter();
             target.insertAdjacentElement('afterend', tag);
             setCursor(tag);
+            save();
           },
           onmousedown: (e) => {
             e.preventDefault();
@@ -213,6 +218,7 @@ export const toolbox = (target, collapsed = true) => {
             const tag = createDialog();
             target.insertAdjacentElement('beforebegin', tag);
             setCursor(tag);
+            save();
           },
           onmousedown: (e) => {
             e.preventDefault();
@@ -227,6 +233,7 @@ export const toolbox = (target, collapsed = true) => {
             const tag = createDialog();
             target.insertAdjacentElement('afterend', tag);
             setCursor(tag);
+            save();
           },
           onmousedown: (e) => {
             e.preventDefault();
@@ -249,6 +256,7 @@ export const toolbox = (target, collapsed = true) => {
           const tag = createParenthetical();
           target.insertAdjacentElement('afterend', tag);
           setCursor(tag);
+          save();
         },
         onmousedown: (e) => {
           e.preventDefault();
@@ -268,6 +276,7 @@ export const toolbox = (target, collapsed = true) => {
             const tag = createScene();
             target.parentElement.insertAdjacentElement('beforebegin', tag);
             setCursor(tag.querySelector('.heading'));
+            save();
           },
           onmousedown: (e) => {
             e.preventDefault();
@@ -282,6 +291,7 @@ export const toolbox = (target, collapsed = true) => {
             const tag = createScene();
             target.parentElement.insertAdjacentElement('afterend', tag);
             setCursor(tag.querySelector('.heading'));
+            save();
           },
           onmousedown: (e) => {
             e.preventDefault();

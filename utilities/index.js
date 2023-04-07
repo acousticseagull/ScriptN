@@ -1,1 +1,1 @@
-export { setCursor, remove } from './utilities';
+export { setCursor, remove, setTitle } from './utilities';

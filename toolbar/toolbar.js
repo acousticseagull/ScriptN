@@ -6,13 +6,12 @@ import {
   createParenthetical,
   createDialog,
 } from '../create';
-import { setCursor } from '../utilities';
+import { setCursor, setTitle } from '../utilities';
 
 let fileHandle;
 
 export const save = async () => {
   const script = JSON.stringify({
-    title: document.querySelector('.title').textContent,
     content: Array.from(document.querySelectorAll('.scene')).map((scene) => ({
       heading: scene.querySelector('.heading').textContent,
       blocks: Array.from(
@@ -37,7 +36,10 @@ export const save = async () => {
   };
 
   if (!fileHandle) fileHandle = await window.showSaveFilePicker(options);
-  // const file = await fileHandle.getFile();
+  const file = await fileHandle.getFile();
+
+  setTitle(file.name);
+
   const writable = await fileHandle.createWritable();
   await writable.write(script);
   await writable.close();
@@ -66,7 +68,7 @@ export const load = async (target) => {
 
   document.querySelectorAll('.scene').forEach((item) => item.remove());
 
-  document.querySelector('.toolbar > .title').textContent = script.title;
+  setTitle(file.name);
 
   script.content.forEach(({ heading, blocks }) => {
     const scene = createScene(heading);
@@ -94,7 +96,7 @@ export const toolbar = (target) => {
       { class: 'toolbar' },
       tag('div', tag('button', { class: 'save', onclick: save }, 'Save')),
       tag('div', tag('button', { class: 'print', onclick: print }, 'Print')),
-      tag('div', { class: 'title', contenteditable: true }, 'Untitled'),
+      tag('div', { class: 'title', contenteditable: false }, 'Untitled'),
       tag(
         'div',
         tag('button', { onclick: () => load(target) }, 'Load'),

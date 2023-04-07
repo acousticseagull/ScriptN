@@ -8,3 +8,10 @@ export const remove = (target) => {
   if (target.previousElementSibling) setCursor(target.previousElementSibling);
   target.remove();
 };
+
+export const setTitle = (title) => {
+  document.querySelector('.toolbar > .title').textContent = title.replace(
+    '.json',
+    ''
+  );
+};
