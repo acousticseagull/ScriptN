@@ -48,7 +48,9 @@ export const save = async (_, saveAs) => {
   await writable.write(script);
   await writable.close();
 
-  setStatusbarContent(`Last saved at ${new Date().toLocaleTimeString()}`);
+  setStatusbarContent(
+    `Last saved at ${file.lastModifiedDate.toLocaleTimeString()}`
+  );
 };
 
 export const load = async (target) => {
