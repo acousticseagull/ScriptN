@@ -133,7 +133,7 @@ body {
 .scene:focus-within::after {
   left: 0;
   bottom: -12px;
-  content: '(CTRL+ENTER ADD SCENE';
+  content: '(CTRL+ENTER ADD SCENE)';
 }
 
 .heading {
