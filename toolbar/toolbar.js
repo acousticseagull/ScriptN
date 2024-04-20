@@ -107,7 +107,6 @@ export const setTitleContent = (title) => {
 };
 
 export function toolbar() {
-  console.log(this);
   return tag(
     'div',
     { class: 'toolbar' },
