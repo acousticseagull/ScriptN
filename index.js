@@ -8,18 +8,10 @@ import {
 import { toolbar, save, load } from './toolbar';
 import { statusbar } from './statusbar';
 
-const script = {
-  node: document.getElementById('app'),
+const node = document.querySelector('#app');
 
-  append(component) {
-    const node = component.call({ ...this });
-    this.node.append(node);
-    return node;
-  },
-};
-
-script.append(toolbar);
-script.append(statusbar);
+node.append(toolbar(node));
+node.append(statusbar(node));
 
 let scene = createScene('');
 
@@ -35,7 +27,7 @@ scene.append(
   )
 );
 
-script.node.append(scene);
+node.append(scene);
 
 document.addEventListener('keydown', (e) => {
   if (e.ctrlKey) {

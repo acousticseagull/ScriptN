@@ -106,7 +106,7 @@ export const setTitleContent = (title) => {
   );
 };
 
-export function toolbar() {
+export function toolbar(target) {
   return tag(
     'div',
     { class: 'toolbar' },
@@ -120,19 +120,17 @@ export function toolbar() {
     tag(
       'div',
       { class: 'text-align-right' },
-      tag('button', { onclick: () => load(this.node) }, 'Load'),
+      tag('button', { onclick: () => load(target) }, 'Load'),
       tag(
         'button',
         {
           class: 'new',
           onclick: () => {
             fileHandle = null;
-            this.node
-              .querySelectorAll('.scene')
-              .forEach((item) => item.remove());
+            target.querySelectorAll('.scene').forEach((item) => item.remove());
             const tag = createScene();
             document.querySelector('.title').textContent = 'Untitled';
-            this.node.append(tag);
+            target.append(tag);
             setCursor(tag.querySelector('.heading'));
           },
         },
