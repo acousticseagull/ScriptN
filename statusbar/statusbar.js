@@ -5,5 +5,6 @@ export const setStatusbarContent = (content) => {
 };
 
 export function statusbar() {
-  return tag('div', { class: 'statusbar' });
+  const { div } = tag;
+  return div({ class: 'statusbar' });
 }

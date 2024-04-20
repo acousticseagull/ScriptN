@@ -10,12 +10,13 @@ import { remove, setCursor } from '../utilities';
 import { save } from '../toolbar';
 
 export const toolbox = (target, collapsed = true) => {
+  const { div, button } = tag;
+
   const create = {};
-  const button = {};
+  const buttons = {};
 
   // change block to action
-  button.action = tag(
-    'button',
+  buttons.action = button(
     {
       disabled:
         target.classList.contains('action') ||
@@ -39,8 +40,7 @@ export const toolbox = (target, collapsed = true) => {
   );
 
   // change block to character
-  button.character = tag(
-    'button',
+  buttons.character = button(
     {
       disabled:
         target.classList.contains('character') ||
@@ -64,8 +64,7 @@ export const toolbox = (target, collapsed = true) => {
   );
 
   // change block to dialog
-  button.dialog = tag(
-    'button',
+  buttons.dialog = button(
     {
       disabled:
         target.classList.contains('dialog') ||
@@ -89,8 +88,7 @@ export const toolbox = (target, collapsed = true) => {
   );
 
   // change block to parenthetical
-  button.parenthetical = tag(
-    'button',
+  buttons.parenthetical = button(
     {
       disabled:
         target.classList.contains('parenthetical') ||
@@ -114,8 +112,7 @@ export const toolbox = (target, collapsed = true) => {
   );
 
   // delete block
-  button.delete = tag(
-    'button',
+  buttons.delete = button(
     {
       class: 'delete',
       disabled:
@@ -134,16 +131,16 @@ export const toolbox = (target, collapsed = true) => {
   );
 
   create.action = [
-    tag('div', { class: 'title' }, 'CREATE ACTION'),
-    tag('div', { class: 'button-group' }, [
-      tag(
-        'button',
+    div({ class: 'title' }, 'CREATE ACTION'),
+    div(
+      { class: 'button-group' },
+      button(
         {
           disabled: target.classList.contains('heading'),
           onclick: (e) => {
-            const tag = createAction();
-            target.insertAdjacentElement('beforebegin', tag);
-            setCursor(tag);
+            const node = createAction();
+            target.insertAdjacentElement('beforebegin', node);
+            setCursor(node);
             save();
           },
           onmousedown: (e) => {
@@ -152,13 +149,12 @@ export const toolbox = (target, collapsed = true) => {
         },
         `ABOVE`
       ),
-      tag(
-        'button',
+      button(
         {
           onclick: (e) => {
-            const tag = createAction();
-            target.insertAdjacentElement('afterend', tag);
-            setCursor(tag);
+            const node = createAction();
+            target.insertAdjacentElement('afterend', node);
+            setCursor(node);
             save();
           },
           onmousedown: (e) => {
@@ -166,21 +162,21 @@ export const toolbox = (target, collapsed = true) => {
           },
         },
         `BELOW`
-      ),
-    ]),
+      )
+    ),
   ];
 
   create.character = [
-    tag('div', { class: 'title' }, 'CREATE CHARACTER'),
-    tag('div', { class: 'button-group' }, [
-      tag(
-        'button',
+    div({ class: 'title' }, 'CREATE CHARACTER'),
+    div(
+      { class: 'button-group' },
+      button(
         {
           disabled: target.classList.contains('heading'),
           onclick: (e) => {
-            const tag = createCharacter();
-            target.insertAdjacentElement('beforebegin', tag);
-            setCursor(tag);
+            const node = createCharacter();
+            target.insertAdjacentElement('beforebegin', node);
+            setCursor(node);
             save();
           },
           onmousedown: (e) => {
@@ -189,13 +185,12 @@ export const toolbox = (target, collapsed = true) => {
         },
         `ABOVE`
       ),
-      tag(
-        'button',
+      button(
         {
           onclick: (e) => {
-            const tag = createCharacter();
-            target.insertAdjacentElement('afterend', tag);
-            setCursor(tag);
+            const node = createCharacter();
+            target.insertAdjacentElement('afterend', node);
+            setCursor(node);
             save();
           },
           onmousedown: (e) => {
@@ -203,21 +198,21 @@ export const toolbox = (target, collapsed = true) => {
           },
         },
         `BELOW`
-      ),
-    ]),
+      )
+    ),
   ];
 
   create.dialog = [
-    tag('div', { class: 'title' }, 'CREATE DIALOG'),
-    tag('div', { class: 'button-group' }, [
-      tag(
-        'button',
+    div({ class: 'title' }, 'CREATE DIALOG'),
+    div(
+      { class: 'button-group' },
+      button(
         {
           disabled: target.classList.contains('heading'),
           onclick: (e) => {
-            const tag = createDialog();
-            target.insertAdjacentElement('beforebegin', tag);
-            setCursor(tag);
+            const node = createDialog();
+            target.insertAdjacentElement('beforebegin', node);
+            setCursor(node);
             save();
           },
           onmousedown: (e) => {
@@ -226,13 +221,12 @@ export const toolbox = (target, collapsed = true) => {
         },
         `ABOVE`
       ),
-      tag(
-        'button',
+      button(
         {
           onclick: (e) => {
-            const tag = createDialog();
-            target.insertAdjacentElement('afterend', tag);
-            setCursor(tag);
+            const node = createDialog();
+            target.insertAdjacentElement('afterend', node);
+            setCursor(node);
             save();
           },
           onmousedown: (e) => {
@@ -240,14 +234,13 @@ export const toolbox = (target, collapsed = true) => {
           },
         },
         `BELOW`
-      ),
-    ]),
+      )
+    ),
   ];
 
   create.parenthetical = [
-    tag('div', { class: 'title' }, 'CREATE PARENTHETICAL'),
-    tag(
-      'button',
+    div({ class: 'title' }, 'CREATE PARENTHETICAL'),
+    button(
       {
         disabled:
           target.classList.contains('heading') ||
@@ -267,15 +260,15 @@ export const toolbox = (target, collapsed = true) => {
   ];
 
   create.scene = [
-    tag('div', { class: 'title' }, 'CREATE SCENE'),
-    tag('div', { class: 'button-group' }, [
-      tag(
-        'button',
+    div({ class: 'title' }, 'CREATE SCENE'),
+    div(
+      { class: 'button-group' },
+      button(
         {
           onclick: (e) => {
-            const tag = createScene();
-            target.parentElement.insertAdjacentElement('beforebegin', tag);
-            setCursor(tag.querySelector('.heading'));
+            const node = createScene();
+            target.parentElement.insertAdjacentElement('beforebegin', node);
+            setCursor(node.querySelector('.heading'));
             save();
           },
           onmousedown: (e) => {
@@ -284,13 +277,12 @@ export const toolbox = (target, collapsed = true) => {
         },
         `ABOVE`
       ),
-      tag(
-        'button',
+      button(
         {
           onclick: (e) => {
-            const tag = createScene();
-            target.parentElement.insertAdjacentElement('afterend', tag);
-            setCursor(tag.querySelector('.heading'));
+            const node = createScene();
+            target.parentElement.insertAdjacentElement('afterend', node);
+            setCursor(node.querySelector('.heading'));
             save();
           },
           onmousedown: (e) => {
@@ -298,17 +290,17 @@ export const toolbox = (target, collapsed = true) => {
           },
         },
         `BELOW`
-      ),
-    ]),
+      )
+    ),
   ];
 
   const menu = [
-    tag('div', { class: 'title' }, 'CHANGE BLOCK'),
-    button.action,
-    button.character,
-    button.parenthetical,
-    button.dialog,
-    button.delete,
+    div({ class: 'title' }, 'CHANGE BLOCK'),
+    buttons.action,
+    buttons.character,
+    buttons.parenthetical,
+    buttons.dialog,
+    buttons.delete,
     ...create.action,
     ...create.character,
     ...create.parenthetical,
@@ -316,8 +308,7 @@ export const toolbox = (target, collapsed = true) => {
     ...create.scene,
   ];
 
-  const node = tag(
-    'div',
+  const node = div(
     {
       class: `toolbox ${collapsed ? 'collapsed' : ''}`,
       style: `
@@ -326,8 +317,7 @@ export const toolbox = (target, collapsed = true) => {
       `,
     },
     collapsed
-      ? tag(
-          'button',
+      ? button(
           {
             class: 'collapse',
             onclick: (e) => {
@@ -339,8 +329,7 @@ export const toolbox = (target, collapsed = true) => {
           },
           '+'
         )
-      : tag(
-          'button',
+      : button(
           {
             class: 'collapse',
             onclick: (e) => {
@@ -352,7 +341,7 @@ export const toolbox = (target, collapsed = true) => {
           },
           '-'
         ),
-    !collapsed && menu
+    ...(!collapsed ? menu : [])
   );
 
   document.querySelector('.toolbox')?.remove();

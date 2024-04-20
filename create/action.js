@@ -9,18 +9,18 @@ function onKeydown(e) {
     e.preventDefault();
 
     if (e.ctrlKey) {
-      const tag = createScene();
-      e.target.parentElement.insertAdjacentElement('afterend', tag);
-      setCursor(tag.querySelector('.heading'));
+      const node = createScene();
+      e.target.parentElement.insertAdjacentElement('afterend', node);
+      setCursor(node.querySelector('.heading'));
       return;
     }
 
-    let tag;
-    if (e.target.innerText === '') tag = createCharacter();
-    else tag = createAction();
-    e.target.insertAdjacentElement('afterend', tag);
+    let node;
+    if (e.target.innerText === '') node = createCharacter();
+    else node = createAction();
+    e.target.insertAdjacentElement('afterend', node);
     if (e.target.innerText === '') e.target.remove();
-    setCursor(tag);
+    setCursor(node);
   }
 
   if (e.key === 'Backspace' && e.target.innerText === '') {
@@ -34,8 +34,8 @@ function onFocus(e) {
 }
 
 export const createAction = (content = '') => {
-  return tag(
-    'div',
+  const { div } = tag;
+  return div(
     {
       class: 'action',
       contenteditable: true,

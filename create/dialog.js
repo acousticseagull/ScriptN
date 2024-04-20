@@ -6,8 +6,8 @@ import { createAction } from './action';
 import { createScene } from './scene';
 
 export const createDialog = (content = '') => {
-  return tag(
-    'div',
+  const { div } = tag;
+  return div(
     {
       class: 'dialog',
       contenteditable: true,
@@ -16,18 +16,18 @@ export const createDialog = (content = '') => {
           e.preventDefault();
 
           if (e.ctrlKey) {
-            const tag = createScene();
-            e.target.parentElement.insertAdjacentElement('afterend', tag);
-            setCursor(tag.querySelector('.heading'));
+            const node = createScene();
+            e.target.parentElement.insertAdjacentElement('afterend', node);
+            setCursor(node.querySelector('.heading'));
             return;
           }
 
-          let tag;
-          if (e.target.innerText === '') tag = createAction();
-          else tag = createCharacter();
-          e.target.insertAdjacentElement('afterend', tag);
+          let node;
+          if (e.target.innerText === '') node = createAction();
+          else node = createCharacter();
+          e.target.insertAdjacentElement('afterend', node);
           if (e.target.innerText === '') e.target.remove();
-          setCursor(tag);
+          setCursor(node);
         }
 
         if (e.key === 'Backspace' && e.target.innerText === '') {

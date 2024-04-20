@@ -5,8 +5,8 @@ import { createScene } from './scene';
 import { createDialog } from './dialog';
 
 export const createParenthetical = (content = '') => {
-  return tag(
-    'div',
+  const { div } = tag;
+  return div(
     {
       class: 'parenthetical',
       contenteditable: true,
@@ -15,18 +15,18 @@ export const createParenthetical = (content = '') => {
           e.preventDefault();
 
           if (e.ctrlKey) {
-            const tag = createScene();
-            e.target.parentElement.insertAdjacentElement('afterend', tag);
-            setCursor(tag.querySelector('.heading'));
+            const node = createScene();
+            e.target.parentElement.insertAdjacentElement('afterend', node);
+            setCursor(node.querySelector('.heading'));
             return;
           }
 
-          let tag;
-          if (e.target.innerText === '') tag = createDialog();
-          else tag = createDialog();
-          e.target.insertAdjacentElement('afterend', tag);
+          let node;
+          if (e.target.innerText === '') node = createDialog();
+          else node = createDialog();
+          e.target.insertAdjacentElement('afterend', node);
           if (e.target.innerText === '') e.target.remove();
-          setCursor(tag);
+          setCursor(node);
         }
 
         if (e.key === 'Backspace' && e.target.innerText === '') {

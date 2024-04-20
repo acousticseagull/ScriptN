@@ -8,17 +8,17 @@ function onKeydown(e) {
     e.preventDefault();
 
     if (e.ctrlKey) {
-      const tag = createScene();
-      e.target.parentElement.insertAdjacentElement('afterend', tag);
-      toolbox(tag);
-      setCursor(tag.querySelector('.heading'));
+      const node = createScene();
+      e.target.parentElement.insertAdjacentElement('afterend', node);
+      toolbox(node);
+      setCursor(node.querySelector('.heading'));
       return;
     }
 
     if (e.target.innerText !== '') {
-      let tag = createAction();
-      e.target.insertAdjacentElement('afterend', tag);
-      setCursor(tag);
+      let node = createAction();
+      e.target.insertAdjacentElement('afterend', node);
+      setCursor(node);
     }
   }
 
@@ -37,24 +37,21 @@ function onKeydown(e) {
 }
 
 export const createScene = (content = '') => {
-  return tag(
-    'div',
+  const { div } = tag;
+  return div(
     {
       class: 'scene',
     },
-    [
-      tag(
-        'div',
-        {
-          class: 'heading',
-          contenteditable: true,
-          onkeydown: onKeydown,
-          onfocus: (e) => {
-            toolbox(e.target);
-          },
+    div(
+      {
+        class: 'heading',
+        contenteditable: true,
+        onkeydown: onKeydown,
+        onfocus: (e) => {
+          toolbox(e.target);
         },
-        content
-      ),
-    ]
+      },
+      content
+    )
   );
 };

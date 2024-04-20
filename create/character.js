@@ -7,8 +7,8 @@ import { createScene } from './scene';
 import { createAction } from './action';
 
 export const createCharacter = (content = '') => {
-  return tag(
-    'div',
+  const { div } = tag;
+  return div(
     {
       class: 'character',
       contenteditable: true,
@@ -17,25 +17,25 @@ export const createCharacter = (content = '') => {
           e.preventDefault();
 
           if (e.ctrlKey) {
-            const tag = createScene();
-            e.target.parentElement.insertAdjacentElement('afterend', tag);
-            setCursor(tag.querySelector('.heading'));
+            const node = createScene();
+            e.target.parentElement.insertAdjacentElement('afterend', node);
+            setCursor(node.querySelector('.heading'));
             return;
           }
 
           if (e.altKey) {
-            const tag = createParenthetical();
-            e.target.insertAdjacentElement('afterend', tag);
-            setCursor(tag);
+            const node = createParenthetical();
+            e.target.insertAdjacentElement('afterend', node);
+            setCursor(node);
             return;
           }
 
-          let tag;
-          if (e.target.innerText === '') tag = createAction();
-          else tag = createDialog();
-          e.target.insertAdjacentElement('afterend', tag);
+          let node;
+          if (e.target.innerText === '') node = createAction();
+          else node = createDialog();
+          e.target.insertAdjacentElement('afterend', node);
           if (e.target.innerText === '') e.target.remove();
-          setCursor(tag);
+          setCursor(node);
         }
 
         if (e.key === 'Backspace' && e.target.innerText === '') {

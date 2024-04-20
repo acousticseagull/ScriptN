@@ -107,31 +107,28 @@ export const setTitleContent = (title) => {
 };
 
 export function toolbar(target) {
-  return tag(
-    'div',
+  const { div, button } = tag;
+  return div(
     { class: 'toolbar' },
-    tag(
-      'div',
-      tag('button', { class: 'save', onclick: save }, 'Save'),
-      tag('button', { onclick: () => save(null, true) }, 'Save as...'),
-      tag('button', { class: 'print', onclick: print }, 'Print')
+    div(
+      button({ class: 'save', onclick: save }, 'Save'),
+      button({ onclick: () => save(null, true) }, 'Save as...'),
+      button({ class: 'print', onclick: print }, 'Print')
     ),
-    tag('div', { class: 'title', contenteditable: false }, 'Untitled'),
-    tag(
-      'div',
+    div({ class: 'title', contenteditable: false }, 'Untitled'),
+    div(
       { class: 'text-align-right' },
-      tag('button', { onclick: () => load(target) }, 'Load'),
-      tag(
-        'button',
+      button({ onclick: () => load(target) }, 'Load'),
+      button(
         {
           class: 'new',
           onclick: () => {
             fileHandle = null;
             target.querySelectorAll('.scene').forEach((item) => item.remove());
-            const tag = createScene();
+            const node = createScene();
             document.querySelector('.title').textContent = 'Untitled';
-            target.append(tag);
-            setCursor(tag.querySelector('.heading'));
+            target.append(node);
+            setCursor(node.querySelector('.heading'));
           },
         },
         'New'
