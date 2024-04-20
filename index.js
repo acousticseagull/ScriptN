@@ -11,9 +11,9 @@ import { statusbar } from './statusbar';
 const node = document.querySelector('#app');
 
 node.append(toolbar(node));
-node.append(statusbar(node));
+node.append(statusbar());
 
-let scene = createScene('');
+const scene = createScene('');
 
 scene.append(
   createCharacter('narrator'),

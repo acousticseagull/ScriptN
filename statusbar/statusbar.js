@@ -4,6 +4,6 @@ export const setStatusbarContent = (content) => {
   document.querySelector('.statusbar').textContent = content;
 };
 
-export function statusbar(target) {
+export function statusbar() {
   return tag('div', { class: 'statusbar' });
 }
